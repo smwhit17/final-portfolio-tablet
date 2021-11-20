@@ -14,6 +14,7 @@ p{
 
 header{
     background-color: rgb(185, 233, 255);
+    padding: 5px;
 }
 
 
@@ -23,6 +24,7 @@ h1{
     font-size: 2em;
     color: black;
     padding: 5px;
+    margin: 5px;
 }
 
 ul {
@@ -34,19 +36,26 @@ ul {
 
 nav a{
     text-decoration: none;
+    color: black;
 }
 
 a:visited{
-    color: blue;
+    color: black;
+
 }
 
 #current {
     background-color: white;
-    text-decoration: underline;
+    /* text-decoration: underline; */
+    padding: 5px;
+    border-radius: 5px;
 }
 #current::after{
-    content: "\1F483";
+    /* content: "\1F483"; */
+    content: " \2605";
+    /* content: url('dancing.png') */
 }
+
 
 a.skip{
     left: 0px;
@@ -55,7 +64,8 @@ a.skip{
     z-index: 1;
     position: absolute;
     top: -40px;
-    color: white;
+    background-color: white;
+    color:  black;
 }
 
 a.skip:focus{
@@ -69,6 +79,8 @@ footer{
     background-color:rgb(185, 233, 255);
     text-align: center;
     color: black;
+    padding: 5px;
+    margin: 10px;
 }
 
 .grid-container{
@@ -110,31 +122,61 @@ footer{
     text-align: center;
 /* } */
 
-/* .introPage{
-    position: relative;
+.introPage{
+    display: grid;
+    /* position: relative; */
     text-align: center;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-row-gap: 10px;
+} 
+
+.smallGroup{
+    grid-column: 1/ -1;
+    max-height: 700px;
+    overflow: hidden;
+    grid-row: 1 /  -1;  
+}
+
+/* .smallGroup img{
+    align-self: center;
 } */
 .aboutCadence{
-    position: absolute;
-    margin: 0 auto;
-    background-color: rgba(255, 255, 255, .65);
+    /* position: absolute;
+    margin: 0 auto; */
+    background-color: rgba(255, 255, 255, .85);
     padding: 30px;
     color: black;
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    align-self: center;
+    border-radius: 10px;;
 }  
-
+ .about2{
+    grid-column: 2/span 1;
+    border: solid white 2px;
+    border-radius: 10px;
+ }
 
 
 h2{
     font-size: 125%;
     padding: 10px;
     text-align: center;
+    /* box-shadow: 0px 0px 20px 0px #ffffff; */
 }
+
+.shows h2, .shows p{
+    margin: 20px;
+}
+
 .disclaimer{
     font-size: 75%;
 }
 
-.videos2020 {
-    display: grid;
+.videos2020, .videos2019, .videos2018, .videos2017 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .videos2021{
@@ -160,8 +202,9 @@ h2{
     text-align: center;
     text-decoration: none;
     display: inline-block;
-  cursor: pointer;
-  margin-bottom: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 20px 0px rgb(185, 233, 255);
 }
 
 /* .2020videos iframe{
@@ -185,6 +228,16 @@ h2{
 /* .contact_main{
     background-image: url("../images/backstage-bw.jpeg");
 } */
+@keyframes movelogo {
+    from{
+        /* width: 500px; */
+        opacity: 0;
+    }
+    to{
+        /* width: 800px; */
+        opacity: 1;
+    }
+} 
 
 @media all and (min-width:768px){ 
 
@@ -196,6 +249,39 @@ h2{
     .grid-container img:hover{
     opacity: 0.75;
     }
+
+    /* .smallGroup{
+        min-height: 500px;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    } */
+
+    .grid-container{
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: repeat(9, 1fr);
+        width: 97%;
+        margin: auto;
+        grid-gap:15px;
+    }
+    .Talia{
+        grid-column: 3 / -1;
+        width: 100%;
+    }
+
+    h1{
+        animation-name: movelogo;
+        animation-duration: 4s;
+        animation-iteration-count: 1;
+        
+    }
+
+    .joinUsImages{
+        width: 50%;
+        margin: 0 auto;
+    }
+
 /* .intropage{
     display: grid;
     grid-template-columns: 1fr;
@@ -209,8 +295,17 @@ h2{
     /* still figuring out what to do with desktop view flex nav */
     h1{
         text-align: left;
+        
     }
     ul {
         justify-content: space-around;
     }
+}
+
+@media screen and (prefers-reduced-motion: reduce){
+    h1{
+        transition: none;
+        animation: none;
+    }
+
 }
